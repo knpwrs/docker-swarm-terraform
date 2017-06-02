@@ -18,4 +18,10 @@ resource "digitalocean_droplet" "docker_swarm_manager" {
   provisioner "remote-exec" {
     script = "install-docker.sh"
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "docker swarm init --advertise-addr ${digitalocean_droplet.docker_swarm_manager.ipv4_address_private}"
+    ]
+  }
 }
