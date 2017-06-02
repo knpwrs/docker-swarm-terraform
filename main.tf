@@ -13,6 +13,7 @@ resource "digitalocean_droplet" "docker_swarm_manager" {
   size = "${var.do_droplet_size}"
   image = "${var.do_image}"
   ssh_keys = ["${digitalocean_ssh_key.default.id}"]
+  private_networking = true
 
   provisioner "remote-exec" {
     script = "install-docker.sh"
