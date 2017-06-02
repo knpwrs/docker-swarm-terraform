@@ -7,8 +7,8 @@ resource "digitalocean_ssh_key" "default" {
   public_key = "${file(var.public_key_path)}"
 }
 
-resource "digitalocean_droplet" "docker_swarm_master" {
-  name = "docker-swarm-master"
+resource "digitalocean_droplet" "docker_swarm_manager" {
+  name = "docker-swarm-manager"
   region = "${var.do_region}"
   size = "${var.do_droplet_size}"
   image = "${var.do_image}"
