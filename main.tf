@@ -11,7 +11,7 @@ data "external" "swarm_join_token" {
 }
 
 resource "digitalocean_ssh_key" "default" {
-  name = "${var.key_name}"
+  name = "${var.do_key_name}"
   public_key = "${file(var.public_key_path)}"
 }
 
