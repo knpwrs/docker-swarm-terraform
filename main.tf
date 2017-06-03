@@ -5,7 +5,6 @@ provider "digitalocean" {
 data "external" "swarm_join_token" {
   program = ["./get-join-tokens.sh"]
   query = {
-    private_key_path = "${var.private_key_path}"
     host = "${digitalocean_droplet.docker_swarm_manager.ipv4_address}"
   }
 }
