@@ -2,8 +2,8 @@ provider "digitalocean" {
   token = "${var.do_token}"
 }
 
-data "external" "swarm_worker_token" {
-  program = ["./get-worker-join-token.sh"]
+data "external" "swarm_join_token" {
+  program = ["./get-join-tokens.sh"]
   query = {
     private_key_path = "${var.private_key_path}"
     host = "${digitalocean_droplet.docker_swarm_manager.ipv4_address}"
@@ -49,7 +49,7 @@ resource "digitalocean_droplet" "docker_swarm_worker" {
 
   provisioner "remote-exec" {
     inline = [
-      "docker swarm join --token ${data.external.swarm_worker_token.result.token} ${digitalocean_droplet.docker_swarm_manager.ipv4_address_private}:2377"
+      "docker swarm join --token ${data.external.swarm_join_token.result.worker} ${digitalocean_droplet.docker_swarm_manager.ipv4_address_private}:2377"
     ]
   }
 }
