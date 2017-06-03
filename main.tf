@@ -35,7 +35,8 @@ resource "digitalocean_droplet" "docker_swarm_manager" {
 }
 
 resource "digitalocean_droplet" "docker_swarm_worker" {
-  name = "docker-swarm-worker"
+  count = 3
+  name = "docker-swarm-worker-${count.index}"
   region = "${var.do_region}"
   size = "${var.do_droplet_size}"
   image = "${var.do_image}"
