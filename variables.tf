@@ -6,6 +6,10 @@ variable "public_key_path" {
   description = "Path to the SSH public key to be used for authentication"
 }
 
+variable "private_key_path" {
+  description = "Path to the SSH private key to be used for authentication"
+}
+
 variable "key_name" {
   description = "Name of the key on Digital Ocean"
   default = "terraform"
