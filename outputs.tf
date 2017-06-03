@@ -9,3 +9,7 @@ output "manager_private_ip" {
 output "loadbalancer_public_ip" {
   value = "${digitalocean_loadbalancer.public.ip}"
 }
+
+output "private_key_path" {
+  value = "${var.private_key_path}"
+}
